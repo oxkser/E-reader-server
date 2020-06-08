@@ -49,8 +49,6 @@ class HistoryModel {
             if (JSON.stringify(data)!= '[]') {
               message.code = 1;
               message.data = data[0];
-              console.log('查询单条历史记录成功');
-              console.log(message);
               resolve(message);
             } else { 
               message.code = 0;

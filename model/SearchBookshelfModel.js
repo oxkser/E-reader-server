@@ -3,9 +3,9 @@ class SearchBookshelfModel {
 	searchbookshelf(userAccount) {
 		const promise = new Promise(function(resolve, reject) {
       pool.getConnection(function (err, con) {//con就是连接对象
-        const sql = 'select bookshelf.addtime,book.author,book.book_name,book.book_id,book.cover,book_of_chapter.chapter,book_of_chapter.chapter_id,bookshelf.page,bookshelf.user_account FROM book INNER JOIN book_of_chapter ON book.book_id=book_of_chapter.book_id INNER JOIN bookshelf ON book.book_id=bookshelf.book_id AND bookshelf.chapter_id = book_of_chapter.chapter_id where bookshelf.user_account= ?';
+        const sql = 'select book_shelf.addtime,book.author,book.book_name,book.book_id,book.cover,book_of_chapter.chapter,book_of_chapter.chapter_id,book_shelf.user_account FROM book INNER JOIN book_of_chapter ON book.book_id=book_of_chapter.book_id INNER JOIN book_shelf ON book.book_id=book_shelf.book_id AND book_shelf.chapter_id = book_of_chapter.chapter_id where book_shelf.user_account= ?';
 				//查询,当前错时，e为错误对象，当成功时， e的值为null, data是查询到的数据
-				con.query(sql,[userAccount],function(e, data){
+        con.query(sql, [userAccount], function (e, data) {
           con.release();
           let message = {
             code: 0,
@@ -36,7 +36,7 @@ class SearchBookshelfModel {
   searchOneBookshelf(userAccount,bookId) {
 		const promise = new Promise(function(resolve, reject) {
       pool.getConnection(function (err, con) {//con就是连接对象
-				const sql = 'select * FROM bookshelf WHERE user_account=? AND book_id=?'
+				const sql = 'select * FROM book_shelf WHERE user_account=? AND book_id=?'
 				//查询,当前错时，e为错误对象，当成功时， e的值为null, data是查询到的数据
 				con.query(sql,[userAccount,bookId],function(e, data){
           con.release();
@@ -68,7 +68,7 @@ class SearchBookshelfModel {
   deleteBookForBookId(userAccount,bookId) {
 		const promise = new Promise(function(resolve, reject) {
       pool.getConnection(function (err, con) {//con就是连接对象
-				const sql = 'DELETE  FROM bookshelf WHERE user_account=? AND book_id=?'
+				const sql = 'DELETE  FROM book_shelf WHERE user_account=? AND book_id=?'
 				//查询,当前错时，e为错误对象，当成功时， e的值为null, data是查询到的数据
 				con.query(sql,[userAccount,bookId],function(e, data){
           con.release();

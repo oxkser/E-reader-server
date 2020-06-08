@@ -8,7 +8,6 @@ class ReadModel {
 				//查询,当前错时，e为错误对象，当成功时， e的值为null, user是查询到的数据
 				con.query(sql,[bookId,chapterId],function(e, data){
           con.release();
-          console.log(data);
           let message = {
             code: 0,
             data: '',

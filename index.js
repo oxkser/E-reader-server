@@ -91,7 +91,6 @@ app.post("/api/resgister", function(req, res) {
 	p.then((message) => { //成功 user是用户数组
 			res.json(message);
   }).catch((e) => { //失败
-    console.log(e)
     res.json('失败');
 	});
 })
@@ -105,7 +104,6 @@ app.post("/api/searchinfobyuseraccount", function(req, res) {
     res.json(message);
 	
 	}).catch((e) => { //失败
-    console.log(e)
     res.json('失败');
 	});
 })
@@ -120,7 +118,6 @@ app.post("/api/searchhistory", function(req, res){
 			res.json(message);
 		}
 	}).catch((e) => { //失败
-    console.log(e);
     res.json('失败');
 	});
 })
@@ -198,7 +195,6 @@ app.post("/api/insertbooktobookshelf", function(req, res){
 			res.json(message); 
 		}
 	}).catch((e) => { //失败
-    console.log(e);
     res.json(e);
 	});
 })
